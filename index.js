@@ -61,10 +61,10 @@ app.use(express.json());
 app.post('/students/above-threshold', (req, res) => {
     const { threshold } = req.body;
 
-    // Input validation for threshold
-    if (typeof threshold !== 'number' || isNaN(threshold)) {
+    // Input validation for positive threshold
+    if (typeof threshold !== 'number' || isNaN(threshold) || threshold <= 0) {
         return res.status(400).json({
-            error: 'Invalid input. Please provide a valid number for threshold.'
+            error: 'Invalid input. Please provide a positive number for threshold.'
         });
     }
 
